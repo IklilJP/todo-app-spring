@@ -1,4 +1,4 @@
-package com.enigmacamp.service.user;
+package com.enigmacamp.repository.user;
 
 import com.enigmacamp.entity.User;
 import jakarta.persistence.EntityManager;

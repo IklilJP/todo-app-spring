@@ -1,4 +1,4 @@
-package com.enigmacamp.service.user;
+package com.enigmacamp.repository.user;
 
 public interface UserService {
     public void addUser(String username, String password);

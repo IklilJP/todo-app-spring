@@ -1,4 +1,4 @@
-package com.enigmacamp.service.todo;
+package com.enigmacamp.repository.todo;
 
 public interface TodoService {
     public void showTodo();

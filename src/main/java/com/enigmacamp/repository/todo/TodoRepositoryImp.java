@@ -1,4 +1,4 @@
-package com.enigmacamp.service.todo;
+package com.enigmacamp.repository.todo;
 
 import com.enigmacamp.entity.Todo;
 import jakarta.persistence.EntityManager;

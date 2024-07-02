@@ -1,14 +1,20 @@
 package com.enigmacamp.menu;
 
-
-import com.enigmacamp.service.todo.TodoServiceImp;
+import com.enigmacamp.ApplicationConfiguration;
+import com.enigmacamp.repository.todo.TodoRepositoryImp;
+import com.enigmacamp.service.TodoService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 
 public class MenuTodo {
     private static final Scanner sc = new Scanner(System.in);
-    private static final TodoServiceImp todoServiceImp = new TodoServiceImp();
+    private static final AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+    private final TodoService todoService;
 
+    public MenuTodo() {
+        this.todoService = applicationContext.getBean(TodoService.class);
+    }
 
     public void displayMenu() {
         System.out.println("-".repeat(50));
@@ -34,7 +40,7 @@ public class MenuTodo {
                 System.out.println("-".repeat(50));
                 System.out.println("Tampilkan Task");
                 System.out.println("-".repeat(50));
-                todoServiceImp.showTodo();
+                todoService.showTodo();
                 displayMenu();
             case "3":
                 System.out.println("-".repeat(50));
@@ -57,7 +63,7 @@ public class MenuTodo {
         }
     }
 
-    public static void forumAdd() {
+    public void forumAdd() {
         String todo_name, priority, descripsion, is_active;
 
         do {
@@ -95,18 +101,18 @@ public class MenuTodo {
                 System.out.println("Status Tidak Valid");
             }
         } while (!is_active.equals("active") && !is_active.equals("inactive"));
-
-        todoServiceImp.addTodo(todo_name, priority, descripsion, is_active);
+        todoService.addTodo(todo_name, priority, descripsion, is_active);
     }
 
-    public static void forumDelete() {
+    public void forumDelete() {
         String id;
+
         System.out.println("Masukan id yang ingin di hapus : ");
         id = sc.nextLine();
-        todoServiceImp.deleteTodo(Integer.parseInt(id));
+        todoService.deleteTodo(Integer.parseInt(id));
     }
 
-    public static void forumedit() {
+    public void forumedit() {
         String id, todo_name, priority, descripsion, is_active;
         System.out.println("Masukan id yang ingin di edit : ");
         id = sc.nextLine();
@@ -147,7 +153,7 @@ public class MenuTodo {
             }
         } while (!is_active.equals("active") && !is_active.equals("inactive"));
 
-        todoServiceImp.editTodo(Integer.parseInt(id), todo_name, priority, descripsion, is_active);
+        todoService.editTodo(Integer.parseInt(id), todo_name, priority, descripsion, is_active);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.enigmacamp.repository.todo;
 
-public interface TodoService {
+public interface TodoRepository {
     public void showTodo();
 
     public void addTodo(String todoName, String priority, String description, String isActive);

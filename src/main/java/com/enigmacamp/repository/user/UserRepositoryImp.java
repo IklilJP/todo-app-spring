@@ -8,13 +8,11 @@ import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Scanner;
 
 @Component
-public class UserServiceImp implements UserService {
+public class UserRepositoryImp implements UserRepository {
     private static final EntityManagerFactory enf = Persistence.createEntityManagerFactory("todo-persistence");
     private static final EntityManager em = enf.createEntityManager();
-    private static final Scanner sc = new Scanner(System.in);
     @Override
     public void addUser(String username, String password) {
         em.getTransaction().begin();

@@ -9,11 +9,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "user_name",nullable = false, unique = true)
+    @Column(name = "user_name", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "password",nullable = false )
+    @Column(name = "password", nullable = false)
     private String password;
+
+    public User() {
+
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public int getId() {
         return id;

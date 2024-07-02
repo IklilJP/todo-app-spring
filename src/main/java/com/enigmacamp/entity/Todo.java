@@ -30,6 +30,19 @@ public class Todo {
     @Column(name = "edite_date")
     private Date editeDate;
 
+
+    public Todo() {
+    }
+
+    public Todo(String todoName, String priority, String description, String isActive, Date createDate, Date editeDate) {
+        this.todoName = todoName;
+        this.priority = priority;
+        this.description = description;
+        this.isActive = isActive;
+        this.createDate = createDate;
+        this.editeDate = editeDate;
+    }
+
     public int getId() {
         return id;
     }

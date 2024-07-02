@@ -1,13 +1,20 @@
 package com.enigmacamp.menu;
 
 
-import com.enigmacamp.service.user.UserServiceImp;
+import com.enigmacamp.ApplicationConfiguration;
+import com.enigmacamp.service.UserService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 
 public class MenuUser {
     private static final Scanner sc = new Scanner(System.in);
-    private static final UserServiceImp userServiceImp = new UserServiceImp();
+    private static final AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
+    private final UserService userService;
+
+    public MenuUser() {
+        this.userService = applicationContext.getBean(UserService.class);
+    }
 
     public boolean displayMenu() {
         boolean check;
@@ -45,7 +52,7 @@ public class MenuUser {
     }
 
 
-    public static void forumAddUser() {
+    public  void forumAddUser() {
         String username, password;
         do {
             System.out.println("masukan username : ");
@@ -63,10 +70,10 @@ public class MenuUser {
                 System.out.println("Password Tidak boleh kosong ! ");
             }
         } while (password.isBlank() || password.isEmpty());
-        userServiceImp.addUser(username, password);
+        userService.addUser(username, password);
     }
 
-    public static boolean forumlogin() {
+    public boolean forumlogin() {
         System.out.println("-".repeat(50));
         System.out.println("Selamat datang di Login ");
         System.out.println("Tolong masukan username dan password");
@@ -75,7 +82,7 @@ public class MenuUser {
         String username = sc.nextLine();
         System.out.println("Password : ");
         String password = sc.nextLine();
-        boolean check = userServiceImp.loginUser(username, password);
+        boolean check = userService.loginUser(username, password);
         if (check) {
             System.out.println("Login Berhasil");
             return check;
